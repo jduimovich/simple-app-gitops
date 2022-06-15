@@ -1,7 +1,21 @@
-apiVersion: appstudio.redhat.com/v1alpha1
+apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: simple-app 
+  name: simple-app
+  namespace: openshift-gitops
 spec:
-  description: "simple-app"
-  displayName: simple-app
+  destination:
+    name: ''
+    namespace: simple-app
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: deploy
+    repoURL:  https://github.com/jduimovich/simple-app-gitops.git
+    targetRevision: HEAD
+    directory:
+      recurse: true
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
