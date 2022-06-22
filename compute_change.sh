@@ -1,7 +1,7 @@
 DELTA=changed_directories
 git diff --name-only HEAD HEAD~1 > $DELTA
 export ONLY_DEPLOY_CHANGES=false
-if grep deplo $DELTA
+if grep deploy $DELTA
 then
     export ONLY_DEPLOY_CHANGES=true  
 fi
