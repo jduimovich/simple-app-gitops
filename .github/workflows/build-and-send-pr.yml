@@ -127,7 +127,7 @@ jobs:
     - name: Patch Deployment YAML with new image references
       if: env.ONLY_DEPLOY_CHANGES == 'false'
       run: | 
-        ./yq  e '.spec.template.spec.containers[0].image = "${{ env.IMAGE_REGISTRY }}/simple-app:${{ env.IMAGE_TAG }}"' deploy/deployment.yaml -i
+        ./yq  e '.spec.template.spec.containers[0].image = "${{ env.IMAGE_REGISTRY }}/${{ env.APP_NAME }}:${{ env.IMAGE_TAG }}"' deploy/deployment.yaml -i
         echo "Image is Set to:"
         ./yq  e '.spec.template.spec.containers[0].image' deploy/deployment.yaml
     - name: Cleanup
