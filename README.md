@@ -15,3 +15,4 @@ Try it out by forking this demo or use your own container based application.
 | 4. Push your changes and watch it build and deploy to your cluster.     |    ![running](images/running.png).        |
  
 
+DEMO
