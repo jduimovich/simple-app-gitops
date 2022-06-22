@@ -1,5 +1,6 @@
 # Simple Container Based App 
-S
+X
+
 ## Build and Deploy a containerized app to OpenShift. 
 
 This demo shows a simple container based app can easily be bootstrapped onto an openshift cluster.
