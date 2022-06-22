@@ -83,7 +83,20 @@ jobs:
         echo "IMAGE_TAG=${GITHUB_SHA::12}" | tee -a $GITHUB_ENV
     - name: Compute Changed Files
       run: |
-        source compute_change.sh    
+        DELTA=changed_directories
+        git diff --name-only HEAD HEAD~1 > $DELTA 
+        if grep -v deploy $DELTA
+        then
+            export ONLY_DEPLOY_CHANGES=false 
+            echo "Files other than DEPLOY changes" 
+        else
+            export ONLY_DEPLOY_CHANGES=true 
+            echo "No non-deploy files found" 
+        fi 
+        echo Files Changed
+        cat $DELTA 
+        rm -rf $DELTA 
+        echo "ONLY_DEPLOY_CHANGES=${ONLY_DEPLOY_CHANGES}" | tee -a $GITHUB_ENV   
     # https://github.com/redhat-actions/buildah-build#readme
     - name: Build from Dockerfile
       if: env.ONLY_DEPLOY_CHANGES == 'false'
