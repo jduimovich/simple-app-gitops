@@ -9,7 +9,7 @@
 # - Push the built image to the GitHub Container Registry (GHCR)
 # - Send a pull request to this repo to update the deployment yaml
 
-name: Buid-Gitops-Workflow 
+name: Build-Gitops-Workflow 
 env:
   # 🖊️ EDIT to set a name for your OpenShift app, or a default one will be generated below.
   APP_NAME: "" 
@@ -23,8 +23,7 @@ env:
   IMAGE_TAGS: ""
   IMAGE_TAG: ""
 
-on:
-  # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+on: 
   push:
     # Edit to the branch(es) you want to build and deploy on each push.
     branches: [ "main" ]
