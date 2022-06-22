@@ -76,13 +76,13 @@ jobs:
       run: |
         DELTA=changed_directories
         git diff --name-only HEAD HEAD~1 > $DELTA 
-        if grep -v deploy $DELTA
-        then
+        if grep -v "deploy/" $DELTA
+        then 
+            echo "Rebuild-required." 
             export ONLY_DEPLOY_CHANGES=false 
-            echo "Files other than DEPLOY changes" 
         else
             export ONLY_DEPLOY_CHANGES=true 
-            echo "No non-deploy files found" 
+            echo "Only files in deployment changed, no rebuild-required." 
         fi 
         echo Files Changed
         cat $DELTA 
