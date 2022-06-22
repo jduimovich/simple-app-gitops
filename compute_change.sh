@@ -1,9 +1,12 @@
 DELTA=changed_directories
-git diff --name-only HEAD HEAD~1 > $DELTA
-export ONLY_DEPLOY_CHANGES=false
+git diff --name-only HEAD HEAD~1 > $DELTA 
 if grep deploy $DELTA
 then
-    export ONLY_DEPLOY_CHANGES=true  
+    export ONLY_DEPLOY_CHANGES=true 
+    echo "ONLY DEPLOY" 
+else
+    export ONLY_DEPLOY_CHANGES=false 
+    echo "Files other than DEPLOY changes" 
 fi
 
 echo Files Changed
