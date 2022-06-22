@@ -10,7 +10,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: deploy
-    repoURL:  https://github.com/charles-bate/simple-app.git
+    repoURL:  https://github.com/jduimovich/simple-app-gitops
     targetRevision: HEAD
     directory:
       recurse: true
