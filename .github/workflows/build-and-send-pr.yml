@@ -85,7 +85,7 @@ jobs:
             echo "Push Selected via /push command" 
             export UPDATE_VIA_PUSH=true  
         fi
-        echo "Update via PUSH: ${UPDATE_VIA_PUSH}"
+        echo "Update via PUSH: $UPDATE_VIA_PUSH"
         git diff --name-only HEAD HEAD~1 > $TEMP_FILE 
         if grep -v "deploy/" $TEMP_FILE
         then 
