@@ -157,4 +157,4 @@ jobs:
     - name: Push Direct Requested
       if: env.NEW_IMAGE_CREATED == 'true' && env.PUSH_NO_PR == 'true'
       run: |
-        echo "this will force push"
+        echo "this will force push test"
