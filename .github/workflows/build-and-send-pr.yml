@@ -78,13 +78,11 @@ jobs:
         TEMP_FILE=temp_file
         echo "Commit message was: ${{ github.event.commits[0].message }}"
         echo "${{ github.event.commits[0].message }}"  > $TEMP_FILE
+        export UPDATE_VIA_PUSH=env.DEFAULT_UPDATE_VIA_PUSH 
         if grep "/push" $TEMP_FILE
         then 
-            echo "Push Selected" 
-            export UPDATE_VIA_PUSH=true 
-        else 
-            export UPDATE_VIA_PUSH=false 
-            echo "Changes will be sent via PR." 
+            echo "Push Selected via /push command" 
+            export UPDATE_VIA_PUSH=true  
         fi  
         git diff --name-only HEAD HEAD~1 > $TEMP_FILE 
         if grep -v "deploy/" $TEMP_FILE
@@ -150,13 +148,13 @@ jobs:
         rm -rf  *digest.txt
         rm -rf  tmp_*
     - name: Pull Request Update
-      if: env.NEW_IMAGE_CREATED == 'true' && env.UPDATE_VIA_PUSH == env.DEFAULT_UPDATE_VIA_PUSH
+      if: env.NEW_IMAGE_CREATED == 'true' && env.UPDATE_VIA_PUSH == 'false'
       uses: peter-evans/create-pull-request@v3
       with:
         title: 'Deploy with tag ${{ env.IMAGE_TAG }} for commit ${{ github.event.head_commit.message }}'
         commit-message: 'New deployment images with tag ${{ env.IMAGE_TAG }}'
     - name: Direct Push Update
-      if: env.NEW_IMAGE_CREATED == 'true' && env.UPDATE_VIA_PUSH == env.DEFAULT_UPDATE_VIA_PUSH
+      if: env.NEW_IMAGE_CREATED == 'true' && env.UPDATE_VIA_PUSH == 'true'
       run: | 
           echo "Direct Update:"
           git config --global user.name "Auto-Push[bot]"
