@@ -76,7 +76,7 @@ jobs:
       run: |
         DELTA=changed_directories
         echo "Commit message was: ${{ github.event.commits[0].message }}"
-        cat ${{ github.event.commits[0].message }}  > $DELTA
+        echo ${{ github.event.commits[0].message }}  > $DELTA
         if grep "/push" $DELTA
         then 
             echo "Push Selected" 
