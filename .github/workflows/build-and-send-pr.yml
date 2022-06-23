@@ -76,7 +76,7 @@ jobs:
       run: |
         TEMP_FILE=temp_file
         echo "Commit message was: ${{ github.event.commits[0].message }}"
-        echo ${{ github.event.commits[0].message }}  > $TEMP_FILE
+        echo "${{ github.event.commits[0].message }}"  > $TEMP_FILE
         if grep "/push" $TEMP_FILE
         then 
             echo "Push Selected" 
