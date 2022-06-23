@@ -74,6 +74,7 @@ jobs:
         echo "IMAGE_TAG=${GITHUB_SHA::12}" | tee -a $GITHUB_ENV
     - name: Compute Changed Files
       run: |
+        echo "Commite message was: ${{ github.event.commits[0].message }}" 
         DELTA=changed_directories
         git diff --name-only HEAD HEAD~1 > $DELTA 
         if grep -v "deploy/" $DELTA
