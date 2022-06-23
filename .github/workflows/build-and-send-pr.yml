@@ -74,10 +74,10 @@ jobs:
         echo "IMAGE_TAG=${GITHUB_SHA::12}" | tee -a $GITHUB_ENV
     - name: Compute Changed Files
       run: |
-        DELTA=changed_directories
+        TEMP_FILE=temp_file
         echo "Commit message was: ${{ github.event.commits[0].message }}"
-        echo ${{ github.event.commits[0].message }}  > $DELTA
-        if grep "/push" $DELTA
+        echo ${{ github.event.commits[0].message }}  > $TEMP_FILE
+        if grep "/push" $TEMP_FILE
         then 
             echo "Push Selected" 
             export PUSH_NO_PR=true 
@@ -85,8 +85,8 @@ jobs:
             export PUSH_NO_PR=false 
             echo "Changes will be sent via PR." 
         fi  
-        git diff --name-only HEAD HEAD~1 > $DELTA 
-        if grep -v "deploy/" $DELTA
+        git diff --name-only HEAD HEAD~1 > $TEMP_FILE 
+        if grep -v "deploy/" $TEMP_FILE
         then 
             echo "Rebuild-required." 
             export ONLY_DEPLOY_CHANGES=false 
@@ -95,8 +95,8 @@ jobs:
             echo "Only files in deployment changed, no rebuild-required." 
         fi 
         echo Files Changed
-        cat $DELTA 
-        rm -rf $DELTA 
+        cat $TEMP_FILE 
+        rm -rf $TEMP_FILE 
         echo "ONLY_DEPLOY_CHANGES=${ONLY_DEPLOY_CHANGES}" | tee -a $GITHUB_ENV   
     # https://github.com/redhat-actions/buildah-build#readme
     - name: Build from Dockerfile
