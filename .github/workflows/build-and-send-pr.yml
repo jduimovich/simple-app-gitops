@@ -157,7 +157,8 @@ jobs:
     - name: Direct Push Update
       if: env.NEW_IMAGE_CREATED == 'true' && env.PUSH_NO_PR == 'true'
       run: | 
-        run: |  
+        run: |
+          echo "Direct Update:"
           git config --global user.name "Auto-Push[bot]"
           git config --global user.email "auto-push@users.noreply.github.com" 
           git add -A
