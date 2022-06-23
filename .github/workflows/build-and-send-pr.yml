@@ -98,6 +98,7 @@ jobs:
         cat $TEMP_FILE 
         rm -rf $TEMP_FILE 
         echo "NEW_IMAGE_CREATED=${NEW_IMAGE_CREATED}" | tee -a $GITHUB_ENV   
+        echo "PUSH_NO_PR=${PUSH_NO_PR}" | tee -a $GITHUB_ENV   
     # https://github.com/redhat-actions/buildah-build#readme
     - name: Build from Dockerfile
       if: env.NEW_IMAGE_CREATED == 'true'
