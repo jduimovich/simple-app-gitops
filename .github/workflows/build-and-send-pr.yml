@@ -78,12 +78,14 @@ jobs:
         TEMP_FILE=temp_file
         echo "Commit message was: ${{ github.event.commits[0].message }}"
         echo "${{ github.event.commits[0].message }}"  > $TEMP_FILE
-        export UPDATE_VIA_PUSH=env.DEFAULT_UPDATE_VIA_PUSH 
+        export UPDATE_VIA_PUSH=${{ env.DEFAULT_UPDATE_VIA_PUSH }}  
+        echo "Default update via PUSH: $UPDATE_VIA_PUSH"
         if grep "/push" $TEMP_FILE
         then 
             echo "Push Selected via /push command" 
             export UPDATE_VIA_PUSH=true  
-        fi  
+        fi
+        echo "Update via PUSH: ${UPDATE_VIA_PUSH}"
         git diff --name-only HEAD HEAD~1 > $TEMP_FILE 
         if grep -v "deploy/" $TEMP_FILE
         then 
