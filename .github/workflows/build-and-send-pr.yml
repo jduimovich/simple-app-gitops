@@ -80,10 +80,15 @@ jobs:
         echo "${{ github.event.commits[0].message }}"  > $TEMP_FILE
         export UPDATE_VIA_PUSH=${{ env.DEFAULT_UPDATE_VIA_PUSH }}  
         echo "Default update via PUSH: $UPDATE_VIA_PUSH"
-        if grep "/push" $TEMP_FILE
+        if grep "/update-via-push" $TEMP_FILE
         then 
-            echo "Push Selected via /push command" 
+            echo "Push Selected via /update-via-push command" 
             export UPDATE_VIA_PUSH=true  
+        fi
+        if grep "/update-via-pr" $TEMP_FILE
+        then 
+            echo "PR Selected via /update-via-pr command" 
+            export UPDATE_VIA_PUSH=false  
         fi
         echo "Update via PUSH: $UPDATE_VIA_PUSH"
         git diff --name-only HEAD HEAD~1 > $TEMP_FILE 
