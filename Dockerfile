@@ -10,6 +10,8 @@ WORKDIR /usr/src/app
 # Copying this separately prevents re-running npm install on every code change.
 COPY package*.json ./
 
+COPY README.md html/README.md
+
 # Install production dependencies.
 RUN npm install --only=production
 
