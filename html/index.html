@@ -36,14 +36,14 @@
   <!-- Header -->
   <header class="w3-container w3-red w3-center" style="padding:64px 16px">
     <i class="fab fa-redhat fa-5x "></i>
-    <h1 class="w3-margin w3-jumbo">Simple-App GitHub Actions Demo for Kroger by Hung</h1>
+    <h1 class="w3-margin w3-jumbo">Simple-App GitHub Actions Demo</h1>
     <p class="w3-xlarge">Leverage OpenShift Developer Tools and GitHub Actions</p>
     <p class="w3-xlarge">Red Hat GitHub Actions Workflow is designed to help you work seamlessly with Red Hat Developer
       tools and Openshift clusters.
     </p>
 
     <p class="w3-xlarge">
-      This application used the RedHat OpenShift Starter Workflow to get an app running in minutes.
+      This application used the RedHat OpenShift Starter Workflow and OpenShift Gitops to get an app running in minutes.
     </p>
 
     <a href="https://github.com/redhat-actions" target="_blank">
@@ -63,28 +63,25 @@
 
   <div class="w3-row-padding w3-padding-64 w3-container">
     <div class="w3-content"> 
-        <h1 id="summary">Run an App on OpenShift in 4 Easy Steps </h1> 
+        <h1 id="summary">Run an App using OpenShift Gitops in 4 Easy Steps </h1> 
         <ol class="w3-xlarge">
-          <li> Get a sandbox cluster
-            <a href="https://developers.redhat.com/developer-sandbox " target="_blank">
-              https://developers.redhat.com/developer-sandbox
+          <li> Modify the `argo` directory to point to your fork.
             </a>
           </li>
-          <li> Add the OpenShift starter workflow to your favourite container based app
-            or fork <a href="https://github.com/jduimovich/simple-app-gitops" target="_blank">
-              this sample app
-            </a> and modify the OpenShift Starter Workflow for your environment.
+          <li> `oc apply -f argo` to install the application on your cluster
           </li>
           <li>
-            Configure the secrets for your OpenShift cluster and preferred container registry.
+               The app will be running on your cluster. 
           </li>
           <li>
-            Push changes to your app and the built-in workflow will have this application running in minutes.
+            Push changes to your app and the built-in workflow will create a pull-request or will directly push changes into your gitops configuration.
+            See the workflow to set the default or include <pre>/update-via-push</pre> or <pre>/update-via-pr</pre> in your commit message 
+            to override the default in your workflow. 
           </li>
         </ol> 
 
         <p class="w3-xlarge"></p>
-        <a href="https://github.com/jduimovich/simple-app" target="_blank">
+        <a href="https://github.com/jduimovich/simple-app-gitops" target="_blank">
           <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">
             Check out the completed code here !
           </button>
