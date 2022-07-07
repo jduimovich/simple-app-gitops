@@ -19,7 +19,7 @@ env:
   # 🖊️ EDIT to specify custom tags for the container image, or default tags will be generated below.
   IMAGE_TAGS: ""
   IMAGE_TAG: ""
-  DEFAULT_UPDATE_VIA_PUSH: "false"
+  DEFAULT_UPDATE_VIA_PUSH: "true"
   # 🖊️ EDIT to set a name for your OpenShift app, or a default one will be generated below.
   APP_NAME: "" 
 on: 
