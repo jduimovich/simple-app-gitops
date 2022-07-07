@@ -11,6 +11,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 COPY README.md html/README.md
+COPY images html/images
 
 # Install production dependencies.
 RUN npm install --only=production
