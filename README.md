@@ -11,7 +11,7 @@ You need to install OpenShift Gitops on your cluster.
 | ----------- | ----------- |
 | 1. Install OpenShift Gitops onto your cluster      |       |
 | 2. Install the gitops app by modifiying the application in the `argo` directory  | ![OpenShift Workflow](images/argo.jpg)         |
-| 3. Fill in the details in the workflow. Each edit location is marked with  a  ⬇️ so you can easily find and configure the workflow.       | ![destination](images/workflow.jpg).    | 
+| 3. Fill in the details in the workflow. Each edit location is marked with  a  ⬇️ so you can easily find and configure the workflow.       | ![destination](images/editconfig.jpg).    | 
 | 4. Push your changes and watch it build. It will send a PR or a Push to this same repo and Gitops will deploy it.     |    ![running](images/running.png).        |
  
  
