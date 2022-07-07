@@ -19,7 +19,7 @@ spec:
         app.kubernetes.io/instance: simple-app
     spec:
       containers:
-        - image: quay.io/jduimovich0/simple-app-gitops:dcd34426f88b
+        - image: quay.io/jduimovich0/simple-app-gitops:e985901c32b4
           imagePullPolicy: Always
           name: container-image
           resources: {}
